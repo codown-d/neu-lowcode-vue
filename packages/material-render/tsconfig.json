@@ -1,16 +1,20 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "ESNext",  // 或者其他合适的 ECMAScript 版本
+    "module": "ESNext",  // 或 "CommonJS"
+    "jsx": "react-jsx",  // 启用 JSX 语法支持
     "moduleResolution": "node",
-    "jsx": "preserve",
     "declaration": true,
-    "declarationDir": "./dist",
-    "outDir": "./dist",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "declarationDir": "./dist",  // 输出类型声明文件到 dist 文件夹
+    "outDir": "./dist",  // 输出编译后的 JS 文件到 dist 文件夹
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
+  "exclude": ["node_modules"]
 }

@@ -1,5 +1,6 @@
 import { defineComponent, resolveComponent, h, computed, ref, watch } from 'vue'
 import type { ComponentConfig } from './types'
+import ComponentRenderer from './ComponentRenderer'
 
 export default defineComponent({
   name: 'ComponentRenderer',

@@ -1,17 +1,18 @@
 {
-    "private": true,
-    "name": "neu-lowcode-vue",
-    "version": "1.0.0",
-    "scripts": {
-        "install": "pnpm install",
-        "build": "pnpm --filter=component-renderer build",
-        "dev": "pnpm --filter=main dev",
-        "clean": "pnpm run clean -r"
-      },
-      "devDependencies": {
-        "typescript": "^4.9.0",
-        "eslint": "^8.0.0",
-        "pnpm": "^8.0.0"
-      }
+  "private": true,
+  "name": "neu-lowcode-vue",
+  "version": "1.0.0",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "build": "pnpm --filter=material-render build",
+    "dev": "pnpm --filter=admin dev"
+  },
+  "workspaces": [
+    "admin",
+    "material-render"
+  ],
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
   }
-  
+}

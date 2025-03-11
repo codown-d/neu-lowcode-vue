@@ -17,7 +17,8 @@
     "lint": "eslint . --ext .ts,.tsx,.vue"
   },
   "peerDependencies": {
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "ant-design-vue": "^4.2.6"
   },
   "devDependencies": {
     "typescript": "~5.8.0",
