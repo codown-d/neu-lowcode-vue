@@ -1,0 +1,26 @@
+{
+  "name": "@neu-lowcode-vue/material-render",
+  "version": "1.0.0",
+  "description": "A dynamic Vue 3 component renderer for Ant Design Vue",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "clean": "rm -rf dist",
+    "lint": "eslint . --ext .ts,.tsx,.vue"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.0",
+    "eslint": "^9.21.0"
+  }
+}
