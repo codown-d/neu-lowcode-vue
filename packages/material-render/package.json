@@ -1,27 +1,28 @@
 {
   "name": "@neu-lowcode-vue/material-render",
   "version": "1.0.0",
-  "description": "A dynamic Vue 3 component renderer for Ant Design Vue",
+  "description": "A sample npm package",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
-  },
   "scripts": {
-    "build": "tsc --project tsconfig.json",
-    "clean": "rm -rf dist",
-    "lint": "eslint . --ext .ts,.tsx,.vue"
+    "build": "tsc"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.8.0"
   },
   "peerDependencies": {
-    "vue": "^3.5.13",
-    "ant-design-vue": "^4.2.6"
+    "vue": "^3.5.13"
   },
-  "devDependencies": {
-    "typescript": "~5.8.0",
-    "eslint": "^9.21.0"
-  }
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/my-npm-package.git"
+  },
+  "keywords": [
+    "npm",
+    "package",
+    "example"
+  ]
 }

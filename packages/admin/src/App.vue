@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import MaterialRender from '@neu-lowcode-vue/material-render'
+import { ref } from 'vue';
+import { pageData } from './constant'
+const materialConfig = ref({
+  id: ''
+  component: 'a-input',  // 组件名称
+  props: {
+    someProp: 'someValue',  // 传递的 props
+  },
+})
 </script>
 
 <template>
-  <header>
-    <MaterialRender />
-  </header>
-
-  <RouterView />
+  <MaterialRender :config="pageData" />
 </template>
 
 <style scoped>
