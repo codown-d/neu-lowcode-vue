@@ -53,7 +53,7 @@ import type { SkeletonProps } from 'ant-design-vue/es/skeleton';
 
 import type { ConfigProviderProps } from 'ant-design-vue/es/config-provider';
 import type { AnchorProps } from 'ant-design-vue/es/anchor';
-import type { BackTopProps } from 'ant-design-vue/es/back-top';
+// import type { BackTopProps } from 'ant-design-vue/es/back-top';
 import { componentMap } from '.';
 
 // 统一导出组件类型
@@ -118,6 +118,6 @@ export type {
   // 其他
   ConfigProviderProps,
   AnchorProps,
-  BackTopProps,
+  // BackTopProps,
 };
 export type ComponentType = keyof typeof componentMap;

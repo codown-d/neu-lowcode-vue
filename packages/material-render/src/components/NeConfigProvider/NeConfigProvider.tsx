@@ -1,5 +1,6 @@
-import { defineComponent, h, provide } from 'vue';
+import { computed, defineComponent, h, provide } from 'vue';
 import { ConfigProvider } from 'ant-design-vue';
+import { useI18n } from 'vue-i18n';
 import type { ConfigProviderProps } from 'ant-design-vue/es/config-provider';
 
 export default defineComponent({
@@ -12,7 +13,10 @@ export default defineComponent({
   },
   setup(props, { slots }) {
     provide('ConfigProvider', props.config);
-
+    // const { locale } = useI18n();
+    // const locale = computed(() => {
+    //   return locale.value === 'zh' ? zhCN : enUS;
+    // });
     return () =>
       h(
         ConfigProvider,
