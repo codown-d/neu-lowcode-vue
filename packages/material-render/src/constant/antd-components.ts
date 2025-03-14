@@ -9,6 +9,8 @@ import {
   Pagination,
   PageHeader,
   Steps,
+  Row, 
+  Col
 } from "ant-design-vue";
 import {
   Form,
@@ -51,7 +53,8 @@ export {
   Layout,
   Space,
   Divider,
-
+  Row, 
+  Col,
   // 导航
   Menu,
   Breadcrumb,

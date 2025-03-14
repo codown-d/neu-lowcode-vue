@@ -20,8 +20,15 @@ export const pageData: NeMaterialRenderProps = {
     // events: [],
     // api: {},
   },
-  events: [], //当前页面节点实例化生命周期
-  apis: {}, //当前页面涉及到后端接口
+  events: {
+    onBeforeMount: () => {
+      console.log('NeConfigProvider 组件即将挂载')
+    },
+    onMounted: () => {
+      console.log('NeConfigProvider 组件即将挂载')
+    },
+  },
+  apis: {},
   elements: [
     {
       id: 'SearchForm_60spo02i5g',
@@ -30,26 +37,38 @@ export const pageData: NeMaterialRenderProps = {
       props: {
         style: { padding: '0 50px' },
       },
-      events: {
-        finish: () => console.log('按钮点击'),
-      },
+      events: {},
       elements: [
         {
-          id: 'SearchForm_60spo02i5g',
+          id: 'SearchForm_1',
           type: 'form',
           name: '搜索表单',
+          props: {
+            model: {
+              username: '',
+            },
+          },
+          events: {
+            onFinish: (val) => console.log(val, 'onFinish'),
+            onFinishFailed: () => console.log('onfinishFailed'),
+            onValidate: () => console.log('onValidate'),
+            onSubmit: (val) => console.log(val, 'onSubmit'),
+            onMounted: (ins) => {
+              console.log(ins, 'onMounted123')
+              ins.proxy.customMethod()
+            },
+          },
           elements: [
             {
               id: 'Input_fb19o54fjh',
               parentId: 'SearchForm_60spo02i5g',
               type: 'form-item',
               name: '文本框',
-              // :rules="[{ required: true, message: 'Please input your username!' }]"
               props: {
                 label: '123',
-                name:'username',
+                name: 'username',
                 rules: [{ required: true, message: 'Please input your username!' }],
-                style: {  },
+                style: {},
               },
               elements: [
                 {
@@ -57,17 +76,29 @@ export const pageData: NeMaterialRenderProps = {
                   parentId: 'SearchForm_60spo02i5g',
                   type: 'input',
                   name: '文本框',
-                  modelValue:'username',
-                  defaultValue:'123',
-                  props:{
-                    placeholder:"input placeholder",
-                    style: { },
+                  props: {
+                    // defaultValue: '123',
+                    value:'12333',
+                    placeholder: 'input placeholder',
+                    style: {},
                   },
-                  // events:{
-                  //   'update:modelValue':(val)=>{console.log(val)}
-                  // }
+                  events: {
+                    onMounted: (ins) => {
+                      console.log(ins, 'input')
+                      ins.proxy.customMethod()
+                    },
+                    onChange(val) {
+                      console.log(val)
+                    },
+                  },
                 },
               ],
+              events: {
+                onMounted: (ins) => {
+                  console.log(ins, 'onMounted1234')
+                  ins.proxy.customMethod()
+                },
+              },
             },
             {
               id: 'Input_fb19o54fjh',
@@ -78,16 +109,181 @@ export const pageData: NeMaterialRenderProps = {
                 {
                   id: 'Input_fb19o54fjh',
                   parentId: 'SearchForm_60spo02i5g',
-                  type: 'button',
+                  type: 'row',
+                  props: {},
+                  name: '文本框',
+                  elements: [
+                    {
+                      id: 'Input_fb19o54fjh',
+                      parentId: 'SearchForm_60spo02i5g',
+                      type: 'col',
+                      name: '文本框',
+                      props: { span: 8 },
+                      elements: [
+                        {
+                          id: 'Input_fb19o54fjh',
+                          parentId: 'SearchForm_60spo02i5g',
+                          type: 'button',
+                          name: '文本框',
+                          props: {
+                            type: 'primary',
+                            htmlType: 'submit',
+                          },
+                          slots: { default: '提交' },
+                          events: {
+                            // onClick: () => console.log('按钮点击'),
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      id: 'Input_fb19o54fjh',
+                      parentId: 'SearchForm_60spo02i5g',
+                      type: 'col',
+                      name: '文本框',
+                      elements: [
+                        {
+                          id: 'Input_fb19o54fjh',
+                          parentId: 'SearchForm_60spo02i5g',
+                          type: 'button',
+                          name: '文本框',
+                          props: {
+                            label: 'submit',
+                          },
+                          slots: { default: '重置' },
+                          
+                          events: {
+                            // onClick: () => console.log('按钮点击'),
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'SearchForm_2',
+          type: 'form',
+          name: '搜索表单',
+          props: {
+            model: {
+              username: '',
+            },
+          },
+          events: {
+            onFinish: (val) => console.log(val, 'onFinish'),
+            onFinishFailed: () => console.log('onfinishFailed'),
+            onValidate: () => console.log('onValidate'),
+            onSubmit: (val) => console.log(val, 'onSubmit'),
+            onMounted: (ins) => {
+              console.log(ins, 'onMounted123')
+              ins.proxy.customMethod()
+            },
+          },
+          elements: [
+            {
+              id: 'Input_fb19o54fjh',
+              parentId: 'SearchForm_60spo02i5g',
+              type: 'form-item',
+              name: '文本框',
+              props: {
+                label: '123',
+                name: 'username',
+                rules: [{ required: true, message: 'Please input your username!' }],
+                style: {},
+              },
+              elements: [
+                {
+                  id: 'Input_fb19o54fjh',
+                  parentId: 'SearchForm_60spo02i5g',
+                  type: 'input',
                   name: '文本框',
                   props: {
-                    type: 'primary',
-                    htmlType: 'submit',
+                    // defaultValue: '123',
+                    value:'12333',
+                    placeholder: 'input placeholder',
+                    style: {},
                   },
-                  slots: { default: '提交' },
                   events: {
-                    onClick: () => console.log('按钮点击'),
+                    onMounted: (ins) => {
+                      console.log(ins, 'input')
+                      ins.proxy.customMethod()
+                    },
+                    onChange(val) {
+                      console.log(val)
+                    },
                   },
+                },
+              ],
+              events: {
+                onMounted: (ins) => {
+                  console.log(ins, 'onMounted1234')
+                  ins.proxy.customMethod()
+                },
+              },
+            },
+            {
+              id: 'Input_fb19o54fjh',
+              parentId: 'SearchForm_60spo02i5g',
+              type: 'form-item',
+              name: '文本框',
+              elements: [
+                {
+                  id: 'Input_fb19o54fjh',
+                  parentId: 'SearchForm_60spo02i5g',
+                  type: 'row',
+                  props: {},
+                  name: '文本框',
+                  elements: [
+                    {
+                      id: 'Input_fb19o54fjh',
+                      parentId: 'SearchForm_60spo02i5g',
+                      type: 'col',
+                      name: '文本框',
+                      props: { span: 8 },
+                      elements: [
+                        {
+                          id: 'Input_fb19o54fjh',
+                          parentId: 'SearchForm_60spo02i5g',
+                          type: 'button',
+                          name: '文本框',
+                          props: {
+                            type: 'primary',
+                            htmlType: 'submit',
+                          },
+                          slots: { default: '提交' },
+                          events: {
+                            // onClick: () => console.log('按钮点击'),
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      id: 'Input_fb19o54fjh',
+                      parentId: 'SearchForm_60spo02i5g',
+                      type: 'col',
+                      name: '文本框',
+                      elements: [
+                        {
+                          id: 'Input_fb19o54fjh',
+                          parentId: 'SearchForm_60spo02i5g',
+                          type: 'button',
+                          name: '文本框',
+                          props: {
+                            label: 'submit',
+                          },
+                          slots: { default: '重置' },
+                          
+                          events: {
+                            // onClick: () => console.log('按钮点击'),
+                          },
+                        },
+                      ],
+                    },
+                  ],
                 },
               ],
             },

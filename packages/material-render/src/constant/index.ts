@@ -1,4 +1,4 @@
-import { Button, Form, Input, InputNumber, Layout, Table } from "./antd-components";
+import { Button, Col, Form, Input, InputNumber, Layout, Row, Table } from "./antd-components";
 import { Component } from "vue";
 
 const  FormItem  = Form.Item;
@@ -15,4 +15,7 @@ export const componentMap: Record<string, Component> = {
   "button": Button,
 
   "table": Table,
+  
+  "row": Row,
+  "col": Col,
 };

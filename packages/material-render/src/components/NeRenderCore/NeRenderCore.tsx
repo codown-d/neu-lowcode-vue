@@ -1,7 +1,17 @@
-import { computed, defineAsyncComponent, defineComponent, h, ref, watch } from "vue";
+import {
+  computed,
+  defineAsyncComponent,
+  defineComponent,
+  h,
+  onBeforeMount,
+  onMounted,
+  ref,
+  watch,
+  defineExpose
+} from "vue";
 import { getComponentByName } from "../../utils";
 import { NeMaterialElementProps } from "./types";
-import { useForm } from "../../hooks";
+import { useEvents, useForm } from "../../hooks";
 
 const AsyncNeMaterialRender = defineAsyncComponent(() => import("./NeRenderCore")); // ✅ 延迟解析
 
@@ -22,38 +32,40 @@ export default defineComponent({
     const eventHandlers = computed(() => {
       const handlers: Record<string, Function> = {};
       if (config.events) {
-        console.log(config.events);
         for (const key in config.events) {
-          handlers[key] = config.events[key];
+          let isLifeCycle = [
+            "onMounted",
+            "onBeforeMount",
+            "onBeforeUpdate",
+            "onUpdated",
+            "onBeforeUnmount",
+            "onUnmounted",
+            "mounted",
+            "beforeMount",
+            "beforeUpdate",
+            "updated",
+            "beforeUnmount",
+            "unmounted",
+          ].includes(key);
+          !isLifeCycle && (handlers[key] = config.events[key]);
         }
       }
-      if (config.modelValue) {
-        handlers[`update:modelValue`] = (value: any) => emit("update:modelValue", value);
-      }
-      console.log(handlers);
       return handlers;
     });
-    const modelRef = ref(config.defaultValue);
-    watch(
-      () => config.modelValue,
-      (val) => (modelRef.value = val),
-    );
-    console.log(config.defaultValue)
-    if (config.defaultValue) {
-      console.log(modelRef,resolvedComponent.value);
+    let { instance } = useEvents(config);
+    if (instance) {
+        console.log(resolvedComponent.value)
+      instance.proxy['customMethod'] = () => {
+        console.log(config.name)
+      };
     }
-    let getComponentProps = () => {};
-    // if(){
-    //   let {} = useForm()
-    // }
     return () =>
       h(
         resolvedComponent.value,
         {
           ...config.props,
           ...eventHandlers.value,
-          "v-model": modelRef.value,
-          "onUpdate:modelValue": (value: any) => emit("update:modelValue", value),
+          // "onUpdate:modelValue": (value: any) => emit("update:modelValue", value),
         },
         {
           default: () =>
@@ -70,4 +82,21 @@ export default defineComponent({
         },
       );
   },
+  methods:{
+    findFirstFormParent() {
+      let currentNode = this;
+      
+      // 递归查找父组件，直到找到第一个 AForm 父节点
+      while (currentNode) {
+        if (currentNode.$options.name === 'AForm') {
+          return currentNode;
+        }
+        currentNode = currentNode.$parent; // 获取父组件
+      }
+      return null; // 如果没有找到返回 null
+    }
+  },
+  mounted(){
+    console.log(1235)
+  }
 });
