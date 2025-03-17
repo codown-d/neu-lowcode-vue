@@ -1,5 +1,6 @@
 import type { NeMaterialRenderProps } from '@neu-lowcode-vue/material-render/dist/types'
 import enUS from 'ant-design-vue/es/locale/en_US'
+import { inject } from 'vue'
 export const pageInfo = {
   id: 100000,
   name: 'CRUD',
@@ -54,7 +55,6 @@ export const pageData: NeMaterialRenderProps = {
             onValidate: () => console.log('onValidate'),
             onSubmit: (val) => console.log(val, 'onSubmit'),
             onMounted: (ins) => {
-              console.log(ins, 'onMounted123')
               ins.proxy.customMethod()
             },
           },
@@ -78,24 +78,19 @@ export const pageData: NeMaterialRenderProps = {
                   name: '文本框',
                   props: {
                     // defaultValue: '123',
-                    value:'12333',
+                    value: '12333',
                     placeholder: 'input placeholder',
                     style: {},
                   },
                   events: {
                     onMounted: (ins) => {
-                      console.log(ins, 'input')
                       ins.proxy.customMethod()
-                    },
-                    onChange(val) {
-                      console.log(val)
-                    },
+                    }
                   },
                 },
               ],
               events: {
                 onMounted: (ins) => {
-                  console.log(ins, 'onMounted1234')
                   ins.proxy.customMethod()
                 },
               },
@@ -151,7 +146,7 @@ export const pageData: NeMaterialRenderProps = {
                             label: 'submit',
                           },
                           slots: { default: '重置' },
-                          
+
                           events: {
                             // onClick: () => console.log('按钮点击'),
                           },
@@ -179,7 +174,6 @@ export const pageData: NeMaterialRenderProps = {
             onValidate: () => console.log('onValidate'),
             onSubmit: (val) => console.log(val, 'onSubmit'),
             onMounted: (ins) => {
-              console.log(ins, 'onMounted123')
               ins.proxy.customMethod()
             },
           },
@@ -203,24 +197,19 @@ export const pageData: NeMaterialRenderProps = {
                   name: '文本框',
                   props: {
                     // defaultValue: '123',
-                    value:'12333',
+                    value: '13',
                     placeholder: 'input placeholder',
                     style: {},
                   },
                   events: {
                     onMounted: (ins) => {
-                      console.log(ins, 'input')
                       ins.proxy.customMethod()
-                    },
-                    onChange(val) {
-                      console.log(val)
-                    },
+                    }
                   },
                 },
               ],
               events: {
                 onMounted: (ins) => {
-                  console.log(ins, 'onMounted1234')
                   ins.proxy.customMethod()
                 },
               },
@@ -256,7 +245,7 @@ export const pageData: NeMaterialRenderProps = {
                           },
                           slots: { default: '提交' },
                           events: {
-                            // onClick: () => console.log('按钮点击'),
+                            onClick: () => {},
                           },
                         },
                       ],
@@ -276,9 +265,11 @@ export const pageData: NeMaterialRenderProps = {
                             label: 'submit',
                           },
                           slots: { default: '重置' },
-                          
                           events: {
-                            // onClick: () => console.log('按钮点击'),
+                            onClick: (context) => {
+                              console.log(context)
+                              context.value.resetFields()
+                            },
                           },
                         },
                       ],

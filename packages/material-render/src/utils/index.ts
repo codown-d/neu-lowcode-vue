@@ -13,7 +13,6 @@ export function getLocaleByName(componentName: string): Component | null {
 }
 
 export const getFormData = (elements: NeMaterialElementProps[]) => {
-  console.log(elements);
   const formData = {};
   const result = {};
   const extractFormData = (list, formId) => {

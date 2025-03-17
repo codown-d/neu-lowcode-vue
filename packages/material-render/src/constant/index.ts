@@ -1,3 +1,4 @@
+import NeFrom from "../components/NeFrom";
 import { Button, Col, Form, Input, InputNumber, Layout, Row, Table } from "./antd-components";
 import { Component } from "vue";
 
@@ -8,7 +9,7 @@ export const componentMap: Record<string, Component> = {
   "layout-content": Content,
   "layout-header": Header,
   "layout-footer": Footer,
-  form: Form,
+  form: NeFrom,
   "form-item": FormItem,
   input: Input,
   "input-number": InputNumber,

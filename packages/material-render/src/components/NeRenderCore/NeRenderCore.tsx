@@ -7,7 +7,10 @@ import {
   onMounted,
   ref,
   watch,
-  defineExpose
+  defineExpose,
+  inject,
+  watchEffect,
+  reactive,
 } from "vue";
 import { getComponentByName } from "../../utils";
 import { NeMaterialElementProps } from "./types";
@@ -54,19 +57,48 @@ export default defineComponent({
     });
     let { instance } = useEvents(config);
     if (instance) {
-        console.log(resolvedComponent.value)
-      instance.proxy['customMethod'] = () => {
-        console.log(config.name)
-      };
+      instance.proxy["customMethod"] = () => {};
     }
+    const formInstance = inject("formInstance", null);
+    const formData = inject("formData",null);
+    console.log(formData)
+    debugger
+
+    let getProps = () => {
+      if (config.type === "input") {
+        console.log("formData", config, formData);
+      }
+      return config.type === "form"
+        ? { config }
+        : config.type === "button"
+          ? {
+              ...config.props,
+              ...eventHandlers.value,
+              onClick: () => {
+                config.events?.["onClick"]?.(formInstance);
+              },
+            }
+          : config.type === "input"
+            ? {
+                ...config.props,
+                ...eventHandlers.value,
+                // modelValue: formData.username,
+                onChange(event) {
+                  let {value}= event.target
+                    formData.username = value; // 更新 formData
+                    console.log(formData,value)
+                    // console.log(`Updated formData:`, value);
+                },
+              }
+            : {
+                ...config.props,
+                ...eventHandlers.value,
+              };
+    };
     return () =>
       h(
         resolvedComponent.value,
-        {
-          ...config.props,
-          ...eventHandlers.value,
-          // "onUpdate:modelValue": (value: any) => emit("update:modelValue", value),
-        },
+        { ...getProps() },
         {
           default: () =>
             config.elements?.map((child, index) =>
@@ -82,21 +114,6 @@ export default defineComponent({
         },
       );
   },
-  methods:{
-    findFirstFormParent() {
-      let currentNode = this;
-      
-      // 递归查找父组件，直到找到第一个 AForm 父节点
-      while (currentNode) {
-        if (currentNode.$options.name === 'AForm') {
-          return currentNode;
-        }
-        currentNode = currentNode.$parent; // 获取父组件
-      }
-      return null; // 如果没有找到返回 null
-    }
-  },
-  mounted(){
-    console.log(1235)
-  }
+  methods: {},
+  mounted() {},
 });

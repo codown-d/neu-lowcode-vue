@@ -25,8 +25,6 @@ export default defineComponent({
   emits: [],
   setup(props, { emit }) {
     let { config, events, apis, elements } = props.config;
-    let {modelForm} = useForm(elements)
-    console.log(55555,modelForm)
     return () =>
       h(
         NeConfigProvider,
