@@ -15,7 +15,6 @@ import { NeMaterialElementProps } from "../components/NeRenderCore";
 
 export const useForm = (elements:NeMaterialElementProps[]) => {
   let  model = ref(getFormData(elements))
-  console.log(123,model)
   return {
     modelForm:model,
   };

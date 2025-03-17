@@ -31,7 +31,6 @@ export default defineComponent({
     // const resolvedComponent = computed(() => resolveComponent(props.config.component));
     const resolvedComponent = computed(() => getComponentByName(config.type));
 
-    // 处理事件
     const eventHandlers = computed(() => {
       const handlers: Record<string, Function> = {};
       if (config.events) {
